@@ -6,6 +6,7 @@ Created on Mon Dec 30 16:34:14 2019
 @author: shailesh
 """
 
+import helpers
 import chess
 from chess import pgn
 import chess.engine
@@ -50,10 +51,12 @@ while(counter<100):
 			else:
 				score = 1000
 		
-		positions.append(board.fen())
-		scores.append(str(score))
+		positions.append(board.fen()+"\n")
+		scores.append(str(score)+"\n")
 		board.push(move)
 	counter+=1
+
+
 
 with open("Data/ScoreData/inputs.txt","w") as inputs:
 	inputs.writelines(positions)

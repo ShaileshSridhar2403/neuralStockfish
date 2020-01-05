@@ -7,7 +7,22 @@ Created on Sat Jan  4 11:18:09 2020
 """
 import numpy as np
 import chess
-def fenToVec(fen,pieces,colours):
+
+pieces = [chess.PAWN,chess.KNIGHT,chess.BISHOP,chess.ROOK,chess.QUEEN,chess.KING]
+colours = [chess.WHITE,chess.BLACK]
+
+def readInputData(path):
+	with open(path) as f:
+		fens = f.readlines()
+	vectors = [fenToVec(fen) for fen in fens]			#X(inputs)
+	
+	return np.array(vectors)
+
+def readLabels(path):
+	with open(path) as f:
+		Y = f.readlines()
+	return np.array(Y)
+def fenToVec(fen):
 	posFen = fen.split()[0]
 	board = chess.BaseBoard(posFen)
 	l = []
@@ -22,7 +37,7 @@ def fenToVec(fen,pieces,colours):
 	return l
 
 	
-def vecToFen(vec,pieces,colours):
+def vecToFen(vec):
 	vecList = np.split(vec,12)
 	whiteList = vecList[:6]
 	blackList = vecList[6:]
@@ -39,11 +54,12 @@ def vecToFen(vec,pieces,colours):
 		for ind in range(len(pieceArr)):
 			if pieceArr[ind]:
 				board.set_piece_at(ind ,chess.Piece(pieces[pieceType],chess.BLACK))
-	return board
+	
+	return board.board_fen()
 
 			
 		
 		
 
-pieces = [chess.PAWN,chess.KNIGHT,chess.BISHOP,chess.ROOK,chess.QUEEN,chess.KING]
-colours = [chess.WHITE,chess.BLACK]
+#pieces = [chess.PAWN,chess.KNIGHT,chess.BISHOP,chess.ROOK,chess.QUEEN,chess.KING]
+#colours = [chess.WHITE,chess.BLACK]
