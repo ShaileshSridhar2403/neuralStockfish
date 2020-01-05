@@ -36,8 +36,8 @@ def custom_loss(layer):			##add penalty for wrong sign in the future
     
 # Compile the model
 model.compile(optimizer='adam',
-              loss=custom_loss(output), # Call the loss function with the selected layer
+              loss='mean_squared_error', # Call the loss function with the selected layer
               metrics=[metrics.mae])
 
 # train
-model.fit(X, Y)
+model.fit(X, Y,epochs = 100)

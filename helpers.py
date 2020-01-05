@@ -21,6 +21,7 @@ def readInputData(path):
 def readLabels(path):
 	with open(path) as f:
 		Y = f.readlines()
+	Y = [int(score) for score in Y]
 	return np.array(Y)
 def fenToVec(fen):
 	posFen = fen.split()[0]

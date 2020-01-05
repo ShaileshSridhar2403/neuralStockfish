@@ -47,9 +47,9 @@ while(counter<100):
 		else:																			#When mate is seen
 			sign = score[1]
 			if sign == '-':
-				score = -1000
+				score = -100000
 			else:
-				score = 1000
+				score = 100000
 		
 		positions.append(board.fen()+"\n")
 		scores.append(str(score)+"\n")
