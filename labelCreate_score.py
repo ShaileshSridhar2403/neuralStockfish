@@ -24,7 +24,7 @@ engine = chess.engine.SimpleEngine.popen_uci("/usr/games/stockfish")
 positions = []
 scores = []
 counter = 1
-while(counter<100):
+while(counter<5000):
 	print(counter)
 	try: 
 		game = pgn.read_game(gameFile)
@@ -42,8 +42,8 @@ while(counter<100):
 			else:
 				score = int(score[1:])
 				
-				if counter%2==0:
-					score*=-1
+				if counter%2==0:														#All scores are with respect to white
+					score*=-1															
 		else:																			#When mate is seen
 			sign = score[1]
 			if sign == '-':

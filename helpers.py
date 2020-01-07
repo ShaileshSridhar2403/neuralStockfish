@@ -11,10 +11,14 @@ import chess
 pieces = [chess.PAWN,chess.KNIGHT,chess.BISHOP,chess.ROOK,chess.QUEEN,chess.KING]
 colours = [chess.WHITE,chess.BLACK]
 
-def readInputData(path):
+def readInputData(path,sizeLimit=False,size=100):
 	with open(path) as f:
 		fens = f.readlines()
-	vectors = [fenToVec(fen) for fen in fens]			#X(inputs)
+	if sizeLimit:
+		length = size
+	else:
+		length = len(fens)
+	vectors = [fenToVec(fen) for fen in fens][:length]			#X(inputs)
 	
 	return np.array(vectors)
 
